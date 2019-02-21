@@ -1,1 +1,1 @@
-web: sh -c 'cd ./backend/src && gunicorn main:main'
+web: sh -c 'cd ./backend/src && bootstrap.sh'
