@@ -1,7 +1,7 @@
 import {
   MatToolbarModule,
   MatButtonModule,
-  MatCardModule
+  MatListModule
 } from "@angular/material";
 import * as Auth0 from "auth0-web";
 import { BrowserModule } from "@angular/platform-browser";
@@ -38,7 +38,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MatToolbarModule,
     MatButtonModule,
-    MatCardModule
+    MatListModule
   ],
   providers: [OppsApiService],
   bootstrap: [AppComponent]

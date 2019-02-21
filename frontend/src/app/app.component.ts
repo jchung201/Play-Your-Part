@@ -7,6 +7,14 @@ import * as Auth0 from "auth0-web";
     <mat-toolbar color="primary" class="mat-elevation-z5">
       <button mat-button routerLink="/">Opportunities</button>
       <button mat-button routerLink="/about">About</button>
+      <button
+        mat-button
+        routerLink="/new-opp"
+        *ngIf="authenticated"
+        class="new-opp"
+      >
+        New Opp
+      </button>
 
       <!-- This fills the remaining space of the current row -->
       <span class="fill-remaining-space"></span>

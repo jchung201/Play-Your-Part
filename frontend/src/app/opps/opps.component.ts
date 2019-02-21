@@ -8,46 +8,23 @@ import { OppsApiService } from "./opps-api.service";
   selector: "opps",
   template: `
     <h2>Opps</h2>
-    <p>Choose an opp and start studying.</p>
-    <div class="opps">
-      <mat-card
-        class="example-card"
-        *ngFor="let opp of oppsList"
-        class="mat-elevation-z5"
-      >
-        <mat-card-content>
-          <mat-card-title>{{ opp.title }}</mat-card-title>
-          <mat-card-subtitle
-            ><strong>{{ opp.organization }}</strong
-            >{{ opp.location }}</mat-card-subtitle
-          >
-          <p>
-            <strong>Hours: {{ opp.contact }}</strong>
+    <p>Choose an opp to start volunteering</p>
+    <div>
+      <mat-list>
+        <mat-list-item *ngFor="let opp of oppsList" style="border-style:solid;">
+          <img
+            matListAvatar
+            src="https://asparkofhope.org/wp-content/uploads/2016/01/Donation_d32b5760-67d2-485e-9a78-ed2b3d97b23d_grande.png"
+            alt="generic"
+          />
+          <h3 matLine>{{ opp.title }}</h3>
+          <p matLine>
+            <span> {{ opp.organization }} </span>
+            <span class="demo-2"> -- {{ opp.description }} </span>
           </p>
-          <p>
-            {{ opp.description }}
-          </p>
-          <button mat-raised-button color="accent">Start Opp</button>
-          <button
-            mat-button
-            color="warn"
-            *ngIf="isAdmin()"
-            (click)="delete(opp.id)"
-          >
-            Delete
-          </button>
-        </mat-card-content>
-      </mat-card>
+        </mat-list-item>
+      </mat-list>
     </div>
-    <button
-      mat-fab
-      color="primary"
-      *ngIf="authenticated"
-      class="new-opp"
-      routerLink="/new-opp"
-    >
-      <i class="material-icons">note_add</i>
-    </button>
   `,
   styleUrls: ["opps.component.css"]
 })
