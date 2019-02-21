@@ -1,1 +1,1 @@
-web: sh -c 'cd ./backend && bootstrap.sh'
+web: gunicorn --pythonpath backend src.main
