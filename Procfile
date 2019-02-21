@@ -1,1 +1,1 @@
-web: sh -c 'cd ./backend/src && bootstrap.sh'
+web: sh -c 'cd ./backend && bootstrap.sh'
