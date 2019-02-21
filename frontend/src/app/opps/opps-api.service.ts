@@ -7,11 +7,11 @@ import {
 import { Observable } from "rxjs-compat/Observable";
 import "rxjs/add/operator/catch";
 import { API_URL } from "../env";
-import { Exam } from "./exam.model";
+import { Opp } from "./opp.model";
 import * as Auth0 from "auth0-web";
 
 @Injectable()
-export class ExamsApiService {
+export class OppsApiService {
   constructor(private http: HttpClient) {}
 
   private static _handleError(err: HttpErrorResponse | any) {
@@ -21,32 +21,32 @@ export class ExamsApiService {
   }
 
   // GET list of public, future events
-  getExams(): Observable<any> {
+  getOpps(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${Auth0.getAccessToken()}`
       })
     };
     return this.http
-      .get(`${API_URL}/exams`, httpOptions)
-      .catch(ExamsApiService._handleError);
+      .get(`${API_URL}/opps`, httpOptions)
+      .catch(OppsApiService._handleError);
   }
 
-  saveExam(exam: Exam): Observable<any> {
+  saveOpp(opp: Opp): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${Auth0.getAccessToken()}`
       })
     };
-    return this.http.post(`${API_URL}/exams`, exam, httpOptions);
+    return this.http.post(`${API_URL}/opps`, opp, httpOptions);
   }
 
-  deleteExam(examId: number) {
+  deleteOpp(oppId: number) {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${Auth0.getAccessToken()}`
       })
     };
-    return this.http.delete(`${API_URL}/exams/${examId}`, httpOptions);
+    return this.http.delete(`${API_URL}/opps/${oppId}`, httpOptions);
   }
 }

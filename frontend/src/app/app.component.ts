@@ -5,7 +5,7 @@ import * as Auth0 from "auth0-web";
   selector: "app-root",
   template: `
     <mat-toolbar color="primary" class="mat-elevation-z5">
-      <button mat-button>Online Exams</button>
+      <button mat-button>Opportunities</button>
       <button mat-button>About</button>
 
       <!-- This fills the remaining space of the current row -->

@@ -1,4 +1,4 @@
-"""add long_description to exams
+"""add long_description to opps
 
 Revision ID: 719a4e19e4c7
 Revises: 

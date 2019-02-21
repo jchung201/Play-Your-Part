@@ -3,9 +3,9 @@
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 
-from entities.entity import Session, engine, Base
-from entities.exam import Exam, ExamSchema
-from auth import AuthError, requires_auth, requires_role
+from .entities.entity import Session, engine, Base
+from .entities.opp import Opp, OppSchema
+from .auth import AuthError, requires_auth, requires_role
 
 # creating the Flask application
 app = Flask(__name__)
@@ -15,47 +15,47 @@ CORS(app)
 Base.metadata.create_all(engine)
 
 
-@app.route('/exams')
-def get_exams():
+@app.route('/opps')
+def get_opps():
     # fetching from the database
     session = Session()
-    exam_objects = session.query(Exam).all()
+    opp_objects = session.query(Opp).all()
 
     # transforming into JSON-serializable objects
-    schema = ExamSchema(many=True)
-    exams = schema.dump(exam_objects)
+    schema = OppSchema(many=True)
+    opps = schema.dump(opp_objects)
 
     # serializing as JSON
     session.close()
-    return jsonify(exams.data)
+    return jsonify(opps.data)
 
 
-@app.route('/exams', methods=['POST'])
+@app.route('/opps', methods=['POST'])
 @requires_auth
-def add_exam():
-    # mount exam object
-    posted_exam = ExamSchema(only=('title', 'description')) \
+def add_opp():
+    # mount opp object
+    posted_opp = OppSchema(only=('title', 'description', 'organization', 'location', 'contact')) \
         .load(request.get_json())
 
-    exam = Exam(**posted_exam.data, created_by="HTTP post request")
+    opp = Opp(**posted_opp.data, created_by="HTTP post request")
 
-    # persist exam
+    # persist opp
     session = Session()
-    session.add(exam)
+    session.add(opp)
     session.commit()
 
-    # return created exam
-    new_exam = ExamSchema().dump(exam).data
+    # return created opp
+    new_opp = OppSchema().dump(opp).data
     session.close()
-    return jsonify(new_exam), 201
+    return jsonify(new_opp), 201
 
 
-@app.route('/exams/<examId>', methods=['DELETE'])
+@app.route('/opps/<oppId>', methods=['DELETE'])
 @requires_role('admin')
-def delete_exam(examId):
+def delete_opp(oppId):
     session = Session()
-    exam = session.query(Exam).filter_by(id=examId).first()
-    session.delete(exam)
+    opp = session.query(Opp).filter_by(id=oppId).first()
+    session.delete(opp)
     session.commit()
     session.close()
     return '', 201

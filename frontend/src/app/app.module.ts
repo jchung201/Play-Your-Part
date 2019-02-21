@@ -1,53 +1,53 @@
 import {
-  MatToolbarModule, MatButtonModule, MatCardModule
-} from '@angular/material';
-import * as Auth0 from 'auth0-web';
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+  MatToolbarModule,
+  MatButtonModule,
+  MatCardModule
+} from "@angular/material";
+import * as Auth0 from "auth0-web";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 
-import {AppComponent} from './app.component';
-import {ExamsApiService} from './exams/exams-api.service';
+import { AppComponent } from "./app.component";
+import { OppsApiService } from "./opps/opps-api.service";
 
-import {ExamFormComponent} from './exams/exam-form.component';
-import {RouterModule, Routes} from '@angular/router';
-import {ExamsComponent} from './exams/exams.component';
-import {CallbackComponent} from './callback.component';
+import { OppFormComponent } from "./opps/opp-form.component";
+import { RouterModule, Routes } from "@angular/router";
+import { OppsComponent } from "./opps/opps.component";
+import { CallbackComponent } from "./callback.component";
 
 const appRoutes: Routes = [
-  { path: 'callback', component: CallbackComponent },
-  { path: 'new-exam', component: ExamFormComponent },
-  { path: '', component: ExamsComponent },
+  { path: "callback", component: CallbackComponent },
+  { path: "new-opp", component: OppFormComponent },
+  { path: "", component: OppsComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     CallbackComponent,
-    ExamFormComponent,
-    ExamsComponent,
+    OppFormComponent,
+    OppsComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(
-      appRoutes,
-    ),
+    RouterModule.forRoot(appRoutes),
     MatToolbarModule,
     MatButtonModule,
-    MatCardModule,
+    MatCardModule
   ],
-  providers: [ExamsApiService],
+  providers: [OppsApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor() {
     Auth0.configure({
-      domain: 'pyp-today.auth0.com',
-      audience: 'https://pyp.today',
-      clientID: 'lagPB1JmXjfGR4obMZBWPSmzDjanfn2X',
-      redirectUri: 'http://localhost:4200/callback',
-      scope: 'openid profile manage:exams'
+      domain: "pyp-today.auth0.com",
+      audience: "https://pyp.today",
+      clientID: "lagPB1JmXjfGR4obMZBWPSmzDjanfn2X",
+      redirectUri: "http://localhost:4200/callback",
+      scope: "openid profile manage:opps"
     });
   }
 }

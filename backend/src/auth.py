@@ -115,8 +115,8 @@ def requires_role(required_role):
             unverified_claims = jwt.get_unverified_claims(token)
 
             # search current token for the expected role
-            if unverified_claims.get('https://online-exams.com/roles'):
-                roles = unverified_claims['https://online-exams.com/roles']
+            if unverified_claims.get('https://online-opps.com/roles'):
+                roles = unverified_claims['https://online-opps.com/roles']
                 for role in roles:
                     if role == required_role:
                         return f(**args)
