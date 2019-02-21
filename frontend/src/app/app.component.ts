@@ -5,8 +5,8 @@ import * as Auth0 from "auth0-web";
   selector: "app-root",
   template: `
     <mat-toolbar color="primary" class="mat-elevation-z5">
-      <button mat-button>Opportunities</button>
-      <button mat-button>About</button>
+      <button mat-button routerLink="/">Opportunities</button>
+      <button mat-button routerLink="/about">About</button>
 
       <!-- This fills the remaining space of the current row -->
       <span class="fill-remaining-space"></span>

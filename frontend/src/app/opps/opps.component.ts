@@ -18,14 +18,14 @@ import { OppsApiService } from "./opps-api.service";
         <mat-card-content>
           <mat-card-title>{{ opp.title }}</mat-card-title>
           <mat-card-subtitle
-            >{{ opp.description }}{{ opp.organization }}{{ opp.location
-            }}{{ opp.contact }}</mat-card-subtitle
+            ><strong>{{ opp.organization }}</strong
+            >{{ opp.location }}</mat-card-subtitle
           >
           <p>
-            Etiam enim purus, vehicula nec dapibus quis, egestas eu quam. Nullam
-            eleifend auctor leo, vitae rhoncus mi sodales vel. Aenean fermentum
-            laoreet volutpat. Integer quam orci, molestie non nibh suscipit,
-            faucibus euismod sapien.
+            <strong>Hours: {{ opp.contact }}</strong>
+          </p>
+          <p>
+            {{ opp.description }}
           </p>
           <button mat-raised-button color="accent">Start Opp</button>
           <button
@@ -82,6 +82,9 @@ export class OppsComponent implements OnInit, OnDestroy {
     if (!Auth0.isAuthenticated()) return false;
 
     const roles = Auth0.getProfile()["https://online-opps.com/roles"];
-    return roles.includes("admin");
+    if (roles) {
+      return roles.includes("admin");
+    }
+    return false;
   }
 }

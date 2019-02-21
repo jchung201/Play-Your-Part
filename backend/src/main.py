@@ -1,11 +1,11 @@
 # coding=utf-8
 
 from flask_cors import CORS
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
-from .entities.entity import Session, engine, Base
-from .entities.opp import Opp, OppSchema
-from .auth import AuthError, requires_auth, requires_role
+from entities.entity import Session, engine, Base
+from entities.opp import Opp, OppSchema
+from auth import AuthError, requires_auth, requires_role
 
 # creating the Flask application
 app = Flask(__name__)
@@ -13,6 +13,11 @@ CORS(app)
 
 # if needed, generate database schema
 Base.metadata.create_all(engine)
+
+
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 
 @app.route('/opps')
@@ -79,7 +84,6 @@ if __name__ == '__main__':
 
     cmd_args = parser.parse_args()
     app_options = {"port": cmd_args.port}
-
     if cmd_args.debug_mode:
         app_options["debug"] = True
         app_options["use_debugger"] = False
