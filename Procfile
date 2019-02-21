@@ -1,0 +1,1 @@
+web: sh -c 'cd ./backend/src && gunicorn main:main'
