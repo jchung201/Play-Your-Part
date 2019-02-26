@@ -3,9 +3,9 @@
 from flask_cors import CORS
 from flask import Flask, jsonify, request, render_template
 
-from entities.entity import Session, engine, Base
-from entities.opp import Opp, OppSchema
-from auth import AuthError, requires_auth, requires_role
+from .entities.entity import Session, engine, Base
+from .entities.opp import Opp, OppSchema
+from .auth import AuthError, requires_auth, requires_role
 
 # creating the Flask application
 app = Flask(__name__)

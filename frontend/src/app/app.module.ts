@@ -9,19 +9,20 @@ import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
-import { OppsApiService } from "./opps/opps-api.service";
-
-import { OppFormComponent } from "./opps/opp-form.component";
-import { AboutComponent } from "./info/about.component";
+import { OppsApiService } from "./listings/opps-api.service";
+import { OppFormComponent } from "./listings/opp-form.component";
+import { AboutComponent } from "./about/about.component";
+import { HomeComponent } from "./home/home.component";
 import { RouterModule, Routes } from "@angular/router";
-import { OppsComponent } from "./opps/opps.component";
+import { OppsComponent } from "./listings/opps.component";
 import { CallbackComponent } from "./callback.component";
 
 const appRoutes: Routes = [
-  { path: "callback", component: CallbackComponent },
+  { path: "", component: HomeComponent },
+  { path: "listings", component: OppsComponent },
   { path: "about", component: AboutComponent },
-  { path: "new-opp", component: OppFormComponent },
-  { path: "", component: OppsComponent }
+  { path: "new", component: OppFormComponent },
+  { path: "callback", component: CallbackComponent }
 ];
 
 @NgModule({
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     CallbackComponent,
     OppFormComponent,
     OppsComponent,
-    AboutComponent
+    AboutComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

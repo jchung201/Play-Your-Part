@@ -4,34 +4,37 @@ import * as Auth0 from "auth0-web";
 @Component({
   selector: "app-root",
   template: `
-    <mat-toolbar color="primary" class="mat-elevation-z5">
-      <button mat-button routerLink="/">Opportunities</button>
-      <button mat-button routerLink="/about">About</button>
-      <button
-        mat-button
-        routerLink="/new-opp"
-        *ngIf="authenticated"
-        class="new-opp"
-      >
-        New Opp
-      </button>
-
-      <!-- This fills the remaining space of the current row -->
-      <span class="fill-remaining-space"></span>
-
-      <button mat-button (click)="signIn()" *ngIf="!authenticated">
-        Sign In
-      </button>
-      <button mat-button (click)="signOut()" *ngIf="authenticated">
-        Sign Out
-      </button>
-    </mat-toolbar>
-
-    <div class="view-container">
-      <router-outlet></router-outlet>
-    </div>
+    <header id="header">
+      <div class="inner">
+        <a href="index.html" class="logo">Play Your Part</a>
+        <nav id="nav">
+          <a routerLink="/">Home</a>
+          <a routerLink="/listings">Listings</a>
+          <a routerLink="/new" *ngIf="authenticated">Create</a>
+          <a routerLink="/about">About</a>
+          <a
+            class="button special"
+            (click)="signIn()"
+            *ngIf="!authenticated"
+            style="padding-right: 2em"
+          >
+            Sign In
+          </a>
+          <a
+            class="button special"
+            (click)="signOut()"
+            *ngIf="authenticated"
+            style="padding-right: 2em"
+          >
+            Sign Out
+          </a>
+        </nav>
+      </div>
+    </header>
+    <a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+    <router-outlet></router-outlet>
   `,
-  styleUrls: ["./app.component.css"]
+  styleUrls: ["../assets/css/main.css"]
 })
 export class AppComponent implements OnInit {
   authenticated = false;
