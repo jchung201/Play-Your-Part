@@ -1,8 +1,8 @@
 import * as Auth0 from "auth0-web";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs/Subscription";
-import { Opp } from "./opp.model";
-import { OppsApiService } from "./opps-api.service";
+import { Opp } from "../listings/opp.model";
+import { OppsApiService } from "../listings/opps-api.service";
 
 @Component({
   selector: "opps",
@@ -38,7 +38,7 @@ import { OppsApiService } from "./opps-api.service";
     </section>
   `
 })
-export class OppsComponent implements OnInit, OnDestroy {
+export class FavoritesComponent implements OnInit, OnDestroy {
   oppsListSubs: Subscription;
   oppsList: Opp[];
   authenticated = false;

@@ -9,9 +9,10 @@ import * as Auth0 from "auth0-web";
         <a href="index.html" class="logo">Play Your Part</a>
         <nav id="nav">
           <a routerLink="/">Home</a>
-          <a routerLink="/listings">Listings</a>
-          <a routerLink="/new" *ngIf="authenticated">Create</a>
           <a routerLink="/about">About</a>
+          <a routerLink="/listings">Listings</a>
+          <a routerLink="/favorites" *ngIf="authenticated">Favorites</a>
+          <a routerLink="/new" *ngIf="authenticated">New Listing</a>
           <a
             class="button special"
             (click)="signIn()"
@@ -24,7 +25,7 @@ import * as Auth0 from "auth0-web";
             class="button special"
             (click)="signOut()"
             *ngIf="authenticated"
-            style="padding-right: 2em"
+            style="padding-right: 2em; padding-top:0em"
           >
             Sign Out
           </a>
