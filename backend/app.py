@@ -1,11 +1,12 @@
 # coding=utf-8
 
+import os
 from flask_cors import CORS
 from flask import Flask, jsonify, request, render_template
 
-from .entities.entity import Session, engine, Base
-from .entities.opp import Opp, OppSchema
-from .auth import AuthError, requires_auth, requires_role
+from entities.entity import Session, engine, Base
+from entities.opp import Opp, OppSchema
+from auth import AuthError, requires_auth, requires_role
 
 # creating the Flask application
 app = Flask(__name__)
@@ -83,7 +84,7 @@ if __name__ == '__main__':
                         help="port of server (default:%(default)s)", type=int, default=5000)
 
     cmd_args = parser.parse_args()
-    app_options = {"port": cmd_args.port}
+    app_options = {"port": os.environ.get('PORT', cmd_args.port)}
     if cmd_args.debug_mode:
         app_options["debug"] = True
         app_options["use_debugger"] = False

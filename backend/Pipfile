@@ -4,17 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-autopep8 = "*"
-pylint = "*"
 
 [packages]
 sqlalchemy = "*"
 psycopg2-binary = "*"
+flask-cors = "*"
 flask = "*"
 marshmallow = "*"
-flask-cors = "*"
 python-jose-cryptodome = "*"
-alembic = "*"
 
 [requires]
 python_version = "3.7"

@@ -131,7 +131,6 @@ export class OppFormComponent {
 
   updateSearchType(event: any) {
     this.opp.searchType = event.target.value;
-    console.log(this.opp.searchType);
   }
   updateCategory(event: any) {
     this.opp.category = event.target.value;
@@ -153,6 +152,7 @@ export class OppFormComponent {
 
   saveOpp(event: any) {
     event.preventDefault();
+    console.log(this.opp);
     if (
       this.opp.category === "" ||
       this.opp.title === "" ||

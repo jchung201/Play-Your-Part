@@ -20,14 +20,20 @@ import { OppsApiService } from "./opps-api.service";
                 <th>Category</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Location</th>
                 <th>Date</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let opp of oppsList">
-                <td>{{ opp.organization }}</td>
+                <td>
+                  {{
+                    opp.category.charAt(0).toUpperCase() + opp.category.slice(1)
+                  }}
+                </td>
                 <td>{{ opp.title }}</td>
                 <td>{{ opp.description.substring(0, 40) }}</td>
+                <td>{{ opp.location }}</td>
                 <td>{{ opp.created_at | date: "MMM dd, yyyy" }}</td>
               </tr>
             </tbody>
