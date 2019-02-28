@@ -39,7 +39,7 @@ def get_opps():
 @requires_auth
 def add_opp():
     # mount opp object
-    posted_opp = OppSchema(only=('title', 'description', 'organization', 'location', 'contact')) \
+    posted_opp = OppSchema(only=('searchType', 'category', 'title', 'description', 'location', 'contact', 'author')) \
         .load(request.get_json())
 
     opp = Opp(**posted_opp.data, created_by="HTTP post request")
