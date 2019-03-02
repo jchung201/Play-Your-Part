@@ -16,8 +16,8 @@
 
 ## Features
 
-- RESTful API with Flask
-- Angular Front-End
+- RESTful API with Python-Flask
+- Angular 7 Front-End
 - PostgreSQL using SQL Alchemy
 
 ## Built With
