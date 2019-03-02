@@ -31,7 +31,7 @@
 
 ![Home](screenshots/home.png)
 
-![Listings](screenshots/listings.png)
+![Listings](screenshots/listing.png)
 
 ![Create](screenshots/form.png)
 
