@@ -26,9 +26,11 @@ import { DemoMaterialModule } from "./material-module";
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
   { path: "listings", component: OppsComponent },
+  { path: "listings/:searchType", component: OppsComponent },
   { path: "about", component: AboutComponent },
   { path: "new", component: OppFormComponent },
   { path: "favorites", component: FavoritesComponent },
+  { path: "favorites/:searchType", component: FavoritesComponent },
   { path: "callback", component: CallbackComponent }
 ];
 

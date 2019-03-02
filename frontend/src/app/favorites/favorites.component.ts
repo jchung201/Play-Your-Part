@@ -4,6 +4,8 @@ import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
 import { Subscription } from "rxjs/Subscription";
 import { Opp } from "../listings/opp.model";
 import { OppsApiService } from "../listings/opps-api.service";
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
 
 export interface OppData {
   category: string;
@@ -27,10 +29,16 @@ export interface searchType {
         </header>
         <div class="table-wrapper">
           <mat-form-field id="searchType">
-            <select matNativeControl required>
-              <option value="musc">Musicians ONLY</option>
-              <option value="group">Groups ONLY</option>
+            <select
+              matNativeControl
+              required
+              (change)="changeSearchType($event)"
+              #selectedAlbum
+              [(ngModel)]="mySelectedItem"
+            >
               <option value="both">Both</option>
+              <option value="musician">Musicians ONLY</option>
+              <option value="group">Groups ONLY</option>
             </select>
           </mat-form-field>
           <mat-form-field id="filter">
@@ -106,6 +114,7 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   oppsListSubs: Subscription;
   oppsList: Opp[];
   authenticated = false;
+  mySelectedItem: string;
   displayedColumns: string[] = [
     "category",
     "title",
@@ -114,30 +123,77 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     "created_at"
   ];
   dataSource: MatTableDataSource<OppData>;
-  searchTypes: searchType[] = [
-    { value: "steak-0", viewValue: "Steak" },
-    { value: "pizza-1", viewValue: "Pizza" },
-    { value: "tacos-2", viewValue: "Tacos" }
-  ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private oppsApi: OppsApiService) {}
+  constructor(
+    private oppsApi: OppsApiService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
 
   ngOnInit() {
-    this.oppsListSubs = this.oppsApi.getOpps().subscribe(res => {
-      this.oppsList = res;
-      console.log(this.oppsList);
-      this.dataSource = new MatTableDataSource(this.oppsList);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }, console.error);
-    this.dataSource = new MatTableDataSource(this.oppsList);
+    var searchType = "";
+    this.route.params.subscribe(params => {
+      searchType = params["searchType"];
+      this.oppsListSubs = this.oppsApi.getOpps().subscribe(res => {
+        this.oppsList = res;
+        var holder = [];
+        if (searchType === "musician") {
+          this.mySelectedItem = "musician";
+          for (let i = 0; i < this.oppsList.length; i++) {
+            if (this.oppsList[i].searchType === "musician") {
+              holder.push(this.oppsList[i]);
+            }
+          }
+        } else if (searchType === "group") {
+          this.mySelectedItem = "group";
+          for (let i = 0; i < this.oppsList.length; i++) {
+            if (this.oppsList[i].searchType === "group") {
+              holder.push(this.oppsList[i]);
+            }
+          }
+        } else {
+          this.mySelectedItem = "both";
+          holder = this.oppsList;
+        }
+        this.dataSource = new MatTableDataSource(holder);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }, console.error);
+    });
+
     const self = this;
 
     Auth0.subscribe(authenticated => (self.authenticated = authenticated));
   }
+
+  changeSearchType(event: any) {
+    var holder = [];
+    if (event.target.value === "musician") {
+      for (let i = 0; i < this.oppsList.length; i++) {
+        if (this.oppsList[i].searchType === "musician") {
+          holder.push(this.oppsList[i]);
+          this.location.replaceState("/listings/musician");
+        }
+      }
+    } else if (event.target.value === "group") {
+      for (let i = 0; i < this.oppsList.length; i++) {
+        if (this.oppsList[i].searchType === "group") {
+          holder.push(this.oppsList[i]);
+          this.location.replaceState("/listings/group");
+        }
+      }
+    } else if (event.target.value === "both") {
+      holder = this.oppsList;
+      this.location.replaceState("/listings/");
+    }
+    this.dataSource = new MatTableDataSource(holder);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

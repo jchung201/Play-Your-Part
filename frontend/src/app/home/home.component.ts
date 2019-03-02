@@ -13,12 +13,12 @@ import { HttpClient } from "@angular/common/http";
         </h1>
         <ul class="actions">
           <li>
-            <a routerLink="/listings" class="button alt"
+            <a routerLink="/listings/group" class="button alt"
               >I am looking for a group</a
             >
           </li>
           <li>
-            <a routerLink="/listings" class="button alt"
+            <a routerLink="/listings/musician" class="button alt"
               >I am looking for a musician</a
             >
           </li>
