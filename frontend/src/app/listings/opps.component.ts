@@ -1,6 +1,12 @@
 import * as Auth0 from "auth0-web";
-import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
+import { Component, OnDestroy, OnInit, ViewChild, Inject } from "@angular/core";
+import {
+  MatPaginator,
+  MatSort,
+  MatTableDataSource,
+  MatDialog,
+  MAT_DIALOG_DATA
+} from "@angular/material";
 import { Subscription } from "rxjs/Subscription";
 import { Opp } from "../listings/opp.model";
 import { OppsApiService } from "../listings/opps-api.service";
@@ -48,6 +54,9 @@ export interface searchType {
               placeholder="Search"
             />
           </mat-form-field>
+          <span id="listingTip" 
+            ><em>*Sign in to create listings</em></span
+          >
 
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort>
@@ -100,7 +109,12 @@ export interface searchType {
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: displayedColumns"
+                (click)="showDetail(row)"
+                style="cursor:pointer;"
+              ></tr>
             </table>
 
             <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
@@ -130,7 +144,8 @@ export class OppsComponent implements OnInit, OnDestroy {
   constructor(
     private oppsApi: OppsApiService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -201,6 +216,12 @@ export class OppsComponent implements OnInit, OnDestroy {
       this.dataSource.paginator.firstPage();
     }
   }
+  showDetail(opp: any) {
+    console.log(opp);
+    this.dialog.open(DialogDataExampleDialog, {
+      data: opp
+    });
+  }
 
   ngOnDestroy() {
     this.oppsListSubs.unsubscribe();
@@ -223,4 +244,23 @@ export class OppsComponent implements OnInit, OnDestroy {
     }
     return false;
   }
+}
+export interface DialogData {}
+@Component({
+  selector: "opps",
+  template: `
+    <h1 class="mat-dialog-title">{{ data.title }}</h1>
+    <div class="mat-dialog-content">
+      <ul>
+        <li>Category: {{ data.category }}</li>
+        <li>Location: {{ data.location }}</li>
+        <li>Date: {{ data.created_at }}</li>
+        <li>Contact: {{ data.contact }}</li>
+      </ul>
+      {{ data.description }}
+    </div>
+  `
+})
+export class DialogDataExampleDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {}
 }

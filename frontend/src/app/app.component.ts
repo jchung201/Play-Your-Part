@@ -11,7 +11,6 @@ import * as Auth0 from "auth0-web";
           <a routerLink="/">Home</a>
           <a routerLink="/about">About</a>
           <a routerLink="/listings">Listings</a>
-          <a routerLink="/favorites" *ngIf="authenticated">Favorites</a>
           <a routerLink="/new" *ngIf="authenticated">New Listing</a>
           <a
             class="button special"

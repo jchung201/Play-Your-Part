@@ -15,7 +15,10 @@ import { AboutComponent } from "./about/about.component";
 import { HomeComponent } from "./home/home.component";
 import { FavoritesComponent } from "./favorites/favorites.component";
 import { RouterModule, Routes } from "@angular/router";
-import { OppsComponent } from "./listings/opps.component";
+import {
+  OppsComponent,
+  DialogDataExampleDialog
+} from "./listings/opps.component";
 import { CallbackComponent } from "./callback.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatNativeDateModule } from "@angular/material";
@@ -42,7 +45,8 @@ const appRoutes: Routes = [
     OppsComponent,
     AboutComponent,
     HomeComponent,
-    FavoritesComponent
+    FavoritesComponent,
+    DialogDataExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -58,7 +62,8 @@ const appRoutes: Routes = [
     FormsModule
   ],
   providers: [OppsApiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogDataExampleDialog]
 })
 export class AppModule {
   constructor() {

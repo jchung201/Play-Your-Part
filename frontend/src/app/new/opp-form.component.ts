@@ -15,7 +15,7 @@ import { Router } from "@angular/router";
           <section>
             <form>
               <div class="row uniform 50%">
-                <div class="3u 12u$(xsmall)">
+                <div class="3u 12u$(small)">
                   <input
                     type="radio"
                     id="priority-low"
@@ -26,7 +26,7 @@ import { Router } from "@angular/router";
                   />
                   <label for="priority-low">Need Musician</label>
                 </div>
-                <div class="9u 12u$(xsmall)">
+                <div class="9u 12u$(small)">
                   <input
                     type="radio"
                     id="priority-normal"
@@ -100,7 +100,7 @@ import { Router } from "@angular/router";
                     <li>
                       <input
                         type="submit"
-                        value="Send Message"
+                        value="Post Listing"
                         class="special"
                         (click)="saveOpp($event)"
                       />

@@ -3861,7 +3861,7 @@ body.is-loading #banner:after {
 
 @media screen and (max-width: 736px) {
   #two {
-    padding: 2em 0 0.1em 0;
+    padding: 2em 0 2em 0;
   }
 }
 
@@ -4161,6 +4161,9 @@ table {
 .mat-cell {
   font-size: 16px !important;
 }
+.mat-row {
+  margin-top: 5px;
+}
 
 .mat- td,
 th {
@@ -4176,4 +4179,9 @@ th {
 #filter {
   width: 35%;
   padding-left: 3em;
+}
+#listingTip {
+  float:right;
+  top:15px;
+  position:relative;
 }

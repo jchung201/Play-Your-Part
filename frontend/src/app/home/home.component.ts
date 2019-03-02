@@ -60,7 +60,7 @@ import { HttpClient } from "@angular/common/http";
               You can find a group or post your own listing.
             </p>
           </div>
-          <a routerLink="/about" class="button alt">Find a group</a>
+          <a routerLink="/listings/group" class="button alt">Find a group</a>
         </article>
         <article class="alt">
           <div class="content">
@@ -76,7 +76,9 @@ import { HttpClient } from "@angular/common/http";
             <p>
               Search for musicians or post a listing.
             </p>
-            <a routerLink="/about" class="button alt">Find a musician</a>
+            <a routerLink="/listings/musician" class="button alt"
+              >Find a musician</a
+            >
           </div>
         </article>
       </div>
