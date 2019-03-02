@@ -31,9 +31,9 @@
 
 ![Home](screenshots/home.png)
 
-![Listings](screenshots/listings.png))
+![Listings](screenshots/listings.png)
 
-![Create](screenshots/form.png))
+![Create](screenshots/form.png)
 
 ## License
 
