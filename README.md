@@ -20,14 +20,20 @@
 - Angular Front-End
 - PostgreSQL using SQL Alchemy
 
-## Screenshots
-
 ## Built With
 
 - [Flask](http://flask.pocoo.org/)
 - [Angular](https://angular.io/)
 - [SQL Alchemy](https://www.sqlalchemy.org/)
 - [PostgreSQL](https://www.postgresql.org/)
+
+## Screenshots
+
+![Home](screenshots/home.png)
+
+![Listings](screenshots/listings.png))
+
+![Create](screenshots/form.png))
 
 ## License
 
