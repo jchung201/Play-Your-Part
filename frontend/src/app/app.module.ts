@@ -70,7 +70,7 @@ export class AppModule {
       domain: "pyp-today.auth0.com",
       audience: "https://pyp.today",
       clientID: "lagPB1JmXjfGR4obMZBWPSmzDjanfn2X",
-      redirectUri: "localhost:4200/callback",
+      redirectUri: "https://www.pyp.today/callback",
       scope: "openid profile manage:orgs"
     });
   }

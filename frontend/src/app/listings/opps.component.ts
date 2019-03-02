@@ -223,6 +223,7 @@ export class OppsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.oppsListSubs.unsubscribe();
+    this.dialog.closeAll();
   }
 
   delete(oppId: number) {
