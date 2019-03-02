@@ -79,9 +79,12 @@ import { Router } from "@angular/router";
                     >
                       <option value="">- Category -</option>
                       <option value="violinist">Violinist</option>
+                      <option value="violaist">Violaist</option>
                       <option value="cellist">Cellist</option>
                       <option value="bass">Bass</option>
-                      <option value="weed">Weed</option>
+                      <option value="guitar">Guitar</option>
+                      <option value="drums">Drums</option>
+                      <option value="vocals">Vocals</option>
                     </select>
                   </div>
                 </div>
@@ -152,18 +155,17 @@ export class OppFormComponent {
 
   saveOpp(event: any) {
     event.preventDefault();
-    console.log(this.opp);
     if (
       this.opp.category === "" ||
       this.opp.title === "" ||
       this.opp.contact === ""
     ) {
-      console.log("These fields are required");
+      alert("These fields are required");
     } else {
       this.oppsApi
         .saveOpp(this.opp)
         .subscribe(
-          () => this.router.navigate(["/"]),
+          () => this.router.navigate(["/listings"]),
           error => alert(error.message)
         );
     }

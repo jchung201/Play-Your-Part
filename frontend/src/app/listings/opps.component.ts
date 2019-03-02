@@ -84,8 +84,8 @@ export interface searchType {
                   Description
                 </th>
                 <td mat-cell *matCellDef="let row">
-                  {{ row.description.substring(0, 40)
-                  }}{{ row.description.length > 40 ? "..." : "" }}
+                  {{ row.description.substring(0, 30)
+                  }}{{ row.description.length > 30 ? "..." : "" }}
                 </td>
               </ng-container>
 
