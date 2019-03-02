@@ -4,12 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+autopep8 = "*"
+pylint = "*"
 
 [packages]
 sqlalchemy = "*"
 psycopg2-binary = "*"
 flask-cors = "*"
 flask = "*"
+gunicorn = "*"
 marshmallow = "*"
 python-jose-cryptodome = "*"
 

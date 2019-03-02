@@ -5,12 +5,12 @@ from sqlalchemy import create_engine, Column, String, Integer, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-db_url = os.environ.get('DATABASE_URL', 'localhost:5432')
-db_name = os.environ.get('DATABASE_NAME', 'pyp-today')
-db_user = os.environ.get('DATABASE_USER', 'postgres')
-db_password = os.environ.get('DATABASE_PASSWORD', 'hello123')
-engine = create_engine(
-    f'postgresql://{db_user}:{db_password}@{db_url}/{db_name}')
+db_url = 'localhost:5432'
+db_name = 'pyp-today'
+db_user = 'postgres'
+db_password = 'hello123'
+engine = create_engine(os.environ.get(
+    'DATABASE_URL', f'postgresql://{db_user}:{db_password}@{db_url}/{db_name}'))
 Session = sessionmaker(bind=engine)
 
 Base = declarative_base()
