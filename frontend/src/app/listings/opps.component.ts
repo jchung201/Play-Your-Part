@@ -54,7 +54,6 @@ export class OppsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.oppsListSubs = this.oppsApi.getOpps().subscribe(res => {
       this.oppsList = res;
-      console.log(this.oppsList);
     }, console.error);
     const self = this;
     Auth0.subscribe(authenticated => (self.authenticated = authenticated));

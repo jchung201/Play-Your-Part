@@ -17,6 +17,11 @@ import { FavoritesComponent } from "./favorites/favorites.component";
 import { RouterModule, Routes } from "@angular/router";
 import { OppsComponent } from "./listings/opps.component";
 import { CallbackComponent } from "./callback.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatNativeDateModule } from "@angular/material";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { DemoMaterialModule } from "./material-module";
 
 const appRoutes: Routes = [
   { path: "", component: HomeComponent },
@@ -39,11 +44,16 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     MatToolbarModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    DemoMaterialModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [OppsApiService],
   bootstrap: [AppComponent]
@@ -59,3 +69,5 @@ export class AppModule {
     });
   }
 }
+
+platformBrowserDynamic().bootstrapModule(AppModule);

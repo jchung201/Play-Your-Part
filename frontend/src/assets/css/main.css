@@ -2314,7 +2314,6 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 select {
-  height: 2.75em;
 }
 
 textarea {
@@ -4144,4 +4143,37 @@ body.is-loading #banner:after {
   #footer {
     padding: 2em 0 0.1em 0;
   }
+}
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+.mat-sort-header-button {
+  color: #e5474b !important;
+  font-size: 20px !important;
+}
+.mat-sort-header-arrow {
+  color: #e5474b !important;
+}
+.mat-cell {
+  font-size: 16px !important;
+}
+
+.mat- td,
+th {
+  width: 20%;
+}
+
+#searchType {
+  width: 15%;
+  color: rgba(0, 0, 0, 0.54);
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+#filter {
+  width: 35%;
+  padding-left: 3em;
 }
