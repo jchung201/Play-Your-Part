@@ -2564,7 +2564,6 @@ ol li {
 }
 
 ul {
-  list-style: disc;
   margin: 0 0 2em 0;
   padding-left: 1em;
 }
@@ -4181,7 +4180,11 @@ th {
   padding-left: 3em;
 }
 #listingTip {
-  float:right;
-  top:15px;
-  position:relative;
+  float: right;
+  top: 15px;
+  position: relative;
+}
+.modDesc {
+  word-wrap: break-word;
+  max-width: 40vw;
 }

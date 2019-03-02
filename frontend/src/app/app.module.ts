@@ -22,7 +22,6 @@ import {
 import { CallbackComponent } from "./callback.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatNativeDateModule } from "@angular/material";
-import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DemoMaterialModule } from "./material-module";
 
@@ -71,10 +70,8 @@ export class AppModule {
       domain: "pyp-today.auth0.com",
       audience: "https://pyp.today",
       clientID: "lagPB1JmXjfGR4obMZBWPSmzDjanfn2X",
-      redirectUri: "http://localhost:4200/callback",
+      redirectUri: "localhost:4200/callback",
       scope: "openid profile manage:orgs"
     });
   }
 }
-
-platformBrowserDynamic().bootstrapModule(AppModule);

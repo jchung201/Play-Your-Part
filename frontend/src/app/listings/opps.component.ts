@@ -54,9 +54,7 @@ export interface searchType {
               placeholder="Search"
             />
           </mat-form-field>
-          <span id="listingTip" 
-            ><em>*Sign in to create listings</em></span
-          >
+          <span id="listingTip"><em>*Sign in to create listings</em></span>
 
           <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource" matSort>
@@ -86,7 +84,8 @@ export interface searchType {
                   Description
                 </th>
                 <td mat-cell *matCellDef="let row">
-                  {{ row.description.substring(0, 40) }}
+                  {{ row.description.substring(0, 40)
+                  }}{{ row.description.length > 40 ? "..." : "" }}
                 </td>
               </ng-container>
 
@@ -217,7 +216,6 @@ export class OppsComponent implements OnInit, OnDestroy {
     }
   }
   showDetail(opp: any) {
-    console.log(opp);
     this.dialog.open(DialogDataExampleDialog, {
       data: opp
     });
@@ -245,19 +243,36 @@ export class OppsComponent implements OnInit, OnDestroy {
     return false;
   }
 }
-export interface DialogData {}
+export interface DialogData {
+  category: string;
+  title: string;
+  description: string;
+  location: string;
+  contact: string;
+  created_at: string;
+}
 @Component({
   selector: "opps",
   template: `
-    <h1 class="mat-dialog-title">{{ data.title }}</h1>
     <div class="mat-dialog-content">
       <ul>
-        <li>Category: {{ data.category }}</li>
-        <li>Location: {{ data.location }}</li>
-        <li>Date: {{ data.created_at }}</li>
-        <li>Contact: {{ data.contact }}</li>
+        <li>
+          <h3>{{ data.title }}</h3>
+        </li>
+        <li>
+          <strong>Category:</strong>
+          {{ data.category }}
+        </li>
+        <li><strong>Location:</strong> {{ data.location }}</li>
+        <li><strong>Contact:</strong> {{ data.contact }}</li>
+        <li>
+          <strong>Date:</strong> {{ data.created_at | date: "MMM dd, yyyy" }}
+        </li>
+        <li class="modDesc">
+          <strong>Description:</strong>
+          {{ data.description }}
+        </li>
       </ul>
-      {{ data.description }}
     </div>
   `
 })
